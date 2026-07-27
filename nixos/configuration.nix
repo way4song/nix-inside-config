@@ -12,6 +12,11 @@
   time.hardwareClockInLocalTime = true;
   i18n.defaultLocale = "en_US.UTF-8";
 
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   nixpkgs.config.allowUnfree = true;
 
   nix.settings.auto-optimise-store = true;
@@ -30,9 +35,6 @@
     };
     efi.canTouchEfiVariables = true;
   };
-
-  # ===== Kernel =====
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # ===== Networking and Firewall =====
   networking.networkmanager.enable = true;
