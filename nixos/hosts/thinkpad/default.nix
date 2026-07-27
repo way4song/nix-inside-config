@@ -14,6 +14,8 @@
   # ===== Desktop =====
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
+  programs.niri.enable = true;
+  programs.dms-shell.enable = true;
 
   # ===== Chinese Input =====
 
@@ -103,6 +105,9 @@
     inkscape
     kdePackages.kdenlive
     libheif
+
+    # Themes
+    noctalia-shell
 
     ];
   
