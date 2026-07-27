@@ -1,4 +1,5 @@
 window-decoration=false
+theme = dankcolors
 font-size = 10
-background-opacity = 1
+background-opacity = 0.9
 custom-shader = shaders/perfection.glsl
