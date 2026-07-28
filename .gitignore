@@ -61,9 +61,12 @@
 # ===== Applications =====
 
 ## GIMP
-
 !GIMP/
 !GIMP/3.0/
+
+## Inkscape
+!inkscape/
+!inkscape/**
 
 # Configuration (*.rc)
 
