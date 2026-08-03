@@ -15,8 +15,8 @@
   # ===== Desktop =====
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
-  programs.niri.enable = false;
-  programs.dms-shell.enable = false;
+  programs.niri.enable = true;
+  programs.dms-shell.enable = true;
 
   # ===== Chinese Input =====
 
