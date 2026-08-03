@@ -9,19 +9,23 @@
   # ===== Identity =====
   networking.hostName = "thinkpad";
 
-  # ===== system services =====
+  # ===== System Services =====
   services.printing.enable = true;
 
   # ===== Desktop =====
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
+
   programs.niri.enable = true;
   programs.dms-shell.enable = true;
 
+  # Run DMS only in the Niri session.
+  systemd.user.services.dms = {
+    unitConfig.ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
+  };
+
   # ===== Chinese Input =====
-
   i18n.inputMethod.enable = true;
-
   i18n.inputMethod.type = "fcitx5";
 
   i18n.inputMethod.fcitx5.addons = with pkgs; [
@@ -51,9 +55,5 @@
     kdePackages.kdenlive
     libheif
 
-    # Themes
-    noctalia-shell
-
-    ];
-  
+  ];
 }
