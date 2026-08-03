@@ -3,5 +3,5 @@
         modifiers: [
             Super,
         ],
-    ): System(Launcher),
+    ): System(AppLibrary),
 }

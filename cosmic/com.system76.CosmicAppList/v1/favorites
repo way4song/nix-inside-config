@@ -3,7 +3,7 @@
     "com.system76.CosmicEdit",
     "com.system76.CosmicTerm",
     "com.system76.CosmicSettings",
-    "google-chrome",
     "obsidian",
     "com.mitchellh.ghostty",
+    "firefox",
 ]
