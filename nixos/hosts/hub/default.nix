@@ -8,14 +8,14 @@ in
     ./hardware-configuration.nix
   ];
   
-  # ===== hostName =====
-  networking.hostName = "nas";
+  # ===== host =====
+  networking.hostName = "hub";
 
   # ===== groups =====
-  users.groups.nas = {};
+  users.groups.hub = {};
 
   users.users.weis.extraGroups = [
-    "nas"
+    "hub"
   ];
 
   # ===== data mount disk =====
