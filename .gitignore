@@ -6,6 +6,7 @@
 
 !nixos/
 !nixos/**
+/nixos/host.link
 
 # ===== Shell =====
 

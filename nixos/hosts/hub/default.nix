@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
-let
-  dockerCompose = "${pkgs.docker-compose}/bin/docker-compose";
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -45,20 +42,20 @@ in
 
   # ===== data Home link =====
   systemd.tmpfiles.rules = [
-    "d /data 2775 weis nas - -"
+    "d /data 2775 weis hub - -"
 
-    "d /data/documents 2775 weis nas - -"
-    "d /data/downloads 2775 weis nas - -"
-    "d /data/pictures 2775 weis nas - -"
-    "d /data/music 2775 weis nas - -"
+    "d /data/documents 2775 weis hub - -"
+    "d /data/downloads 2775 weis hub - -"
+    "d /data/pictures 2775 weis hub - -"
+    "d /data/music 2775 weis hub - -"
 
-    "d /data/videos 2775 weis nas - -"
-    "d /data/videos/movies 2775 weis nas - -"
-    "d /data/videos/tv 2775 weis nas - -"
+    "d /data/videos 2775 weis hub - -"
+    "d /data/videos/movies 2775 weis hub - -"
+    "d /data/videos/tv 2775 weis hub - -"
 
-    "d /data/shared 2775 weis nas - -"
-    "d /data/backups 2770 weis nas - -"
-    "d /data/.secrets 2770 weis nas - -"
+    "d /data/shared 2775 weis hub - -"
+    "d /data/backups 2770 weis hub - -"
+    "d /data/.secrets 2770 weis hub - -"
 
     "L+ /home/weis/Documents - - - - /data/documents"
     "L+ /home/weis/Downloads - - - - /data/downloads"
@@ -67,39 +64,22 @@ in
     "L+ /home/weis/Videos - - - - /data/videos"
   ];
 
-  # ===== Docker Compose：media =====
-  systemd.services.compose-media = {
-    description = "Docker Compose stack: media";
+  # ===== Docker network =====
+  systemd.services.docker-network-hub = {
+    description = "Create Docker network: hub";
+
     wantedBy = [ "multi-user.target" ];
-    after = [ "docker.service" "network-online.target" ];
-    wants = [ "network-online.target" ];
+    after = [ "docker.service" ];
     requires = [ "docker.service" ];
 
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      WorkingDirectory = "/data/compose/media";
-      ExecStart = "${dockerCompose} up -d";
-      ExecStop = "${dockerCompose} down";
-      TimeoutStartSec = 0;
     };
-  };
 
-  # ===== Docker Compose：immich =====
-  systemd.services.compose-immich = {
-    description = "Docker Compose stack: immich";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "docker.service" "network-online.target" ];
-    wants = [ "network-online.target" ];
-    requires = [ "docker.service" ];
-
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      WorkingDirectory = "/data/compose/immich";
-      ExecStart = "${dockerCompose} up -d";
-      ExecStop = "${dockerCompose} down";
-      TimeoutStartSec = 0;
-    };
+    script = ''
+      ${pkgs.docker}/bin/docker network inspect hub >/dev/null 2>&1 \
+        || ${pkgs.docker}/bin/docker network create hub
+    '';
   };
 }

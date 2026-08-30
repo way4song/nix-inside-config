@@ -90,7 +90,7 @@
 
   services.openssh.enable = true;
   services.tailscale.enable = true;
-  services.flatpak.enable = true;
+#  services.flatpak.enable = true;
 
   services.journald.extraConfig = ''
     SystemMaxUse=1G
