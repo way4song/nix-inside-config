@@ -1,5 +1,5 @@
 [Unit]
-Description=Run Documents Bisync hourly
+Description=Run Documents Bisync every 10 minutes
 
 [Timer]
 OnBootSec=2min

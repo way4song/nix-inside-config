@@ -4,4 +4,4 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=%h/.config/rclone/bisync-documents.sh
+ExecStart=%h/.config/rclone/bisync-documents.fish

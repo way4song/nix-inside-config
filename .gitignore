@@ -59,6 +59,11 @@
 !cosmic/
 !cosmic/**
 
+# ===== Rclone =====
+
+!rclone/
+!rclone/bisync-documents.fish
+
 # ===== Applications =====
 
 ## GIMP
